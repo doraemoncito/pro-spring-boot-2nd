@@ -9,10 +9,13 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.jackson.Jacksonized;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,6 +27,9 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
+@Jacksonized
+@Builder(toBuilder = true, builderMethodName = "aToDo", setterPrefix = "with")
 public class ToDo {
 
     @Id
@@ -34,7 +40,7 @@ public class ToDo {
     @NotBlank
     private String description;
 
-    @Column(insertable = true, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime created;
     private LocalDateTime modified;
     private boolean completed;
