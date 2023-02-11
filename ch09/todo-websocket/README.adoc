@@ -1,0 +1,26 @@
+= TODO websocket example application
+
+Build the application with:
+
+[source,shell]
+----
+mvn clean package
+----
+
+After building, you can start the application but running the executable jat file.
+
+Connect to the webserver on http://localhost:8080 to see the TOD0 list.
+
+Connect to the database on http://localhost:8080/h2-console/ and paste the database URL shown in the console. e.g.
+
+[source,text]
+----
+2023-02-11T13:15:59.385Z  INFO 16723 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:00098204-2f9b-4fb4-b824-1df5560dcf29 user=SA
+----
+
+Add an item to the TODO list using curl:
+
+[source,shell]
+----
+curl -XPOST -d '{"description":"Learn to play Guitar"}' -H "Content-Type: application/json" http://localhost:8080/api/toDos
+----

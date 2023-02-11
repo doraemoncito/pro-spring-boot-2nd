@@ -1,0 +1,19 @@
+spring:
+  # JPA
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+  # H2 specific configuration
+  h2:
+    console.enabled: true
+  # Rest Repositories
+  data:
+    rest:
+      base-path: /api
+# WebSocket
+todo:
+  ws:
+    endpoint: /stomp
+    broker: /todo
+    app: /todo-api-ws

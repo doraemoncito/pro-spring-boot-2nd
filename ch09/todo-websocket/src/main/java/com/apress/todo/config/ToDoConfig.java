@@ -12,16 +12,18 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableConfigurationProperties(ToDoProperties.class)
 public class ToDoConfig implements WebSocketMessageBrokerConfigurer {
 
-    private ToDoProperties props;
+    private final ToDoProperties props;
 
-    public ToDoConfig(ToDoProperties props){
+    public ToDoConfig(ToDoProperties props) {
         this.props = props;
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint(props.getEndpoint()).setAllowedOrigins("*").withSockJS();
-
+        registry.addEndpoint(props.getEndpoint())
+                .setAllowedOriginPatterns("*")
+//                .setAllowedOrigins("*")
+                .withSockJS();
     }
 
     @Override

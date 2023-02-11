@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDo WebSockets</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap-themes/1.0.2/dist/abaculus/index.min.css">
 </head>
 <body>
 <div class="container theme-showcase" role="main">
     <div class="jumbotron">
         <h1>What ToDo?</h1>
-        <p>An easy way to find out what your are going to do NEXT!</p>
+        <p>An easy way to find out what you are going to do NEXT!</p>
     </div>
 
     <div class="page-header">
@@ -32,15 +32,15 @@
 </div>
 
 
-<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/jquery/3.6.3/jquery.min.js"></script>
 <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/2.3.3/stomp.min.js"></script>
 
 <script>
 
-    $(function(){
-        var stompClient = null;
-        var socket = new SockJS('http://localhost:8080/stomp');
+    $(function () {
+        let stompClient = null;
+        const socket = new SockJS('http://localhost:8080/stomp');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, function (frame) {
@@ -48,8 +48,8 @@
 
             stompClient.subscribe('/todo/new', function (data) {
                 console.log('>>>>> ' + data);
-                var json = JSON.parse(data.body);
-                var result = "<span><strong>[" + json.created + "]</strong>&nbsp" + json.description + "</span><br/>";
+                const json = JSON.parse(data.body);
+                const result = "<span><strong>[" + json.created + "]</strong>&nbsp" + json.description + "</span><br/>";
                 $("#output").append(result);
             });
 
